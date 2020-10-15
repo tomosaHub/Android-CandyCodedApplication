@@ -1,9 +1,11 @@
 package com.pluralsight.candycoded;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.view.View;
 
 import com.squareup.picasso.Picasso;
 
@@ -26,6 +28,27 @@ public class InfoActivity extends AppCompatActivity {
     // ***
     // TODO - Task 2 - Launch the Google Maps Activity
     // ***
+    //to attach the click listener
+    public void createMapIntent(View view)
+    {
+        //Creating Uri builder for API
+//    Uri.Builder builder = new Uri.Builder();
+
+        Uri addressUri = Uri.parse("geo:0,0?q=618 E South St Orlando, FL 32801");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW,addressUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+
+        //check if Activity Exist to handle intent
+        if(!(mapIntent.resolveActivity(getPackageManager()) == null))
+        {
+            startActivity(mapIntent);
+        }
+        else
+        {
+            //No activity to handle the intent 'mapIntent'
+        }
+
+    }
 
     // ***
     // TODO - Task 3 - Launch the Phone Activity
